@@ -1,0 +1,16 @@
+require("00_helpfunctions")
+require("01_layouts")
+require("02_macros")
+require("03_sequences")
+require("04_groups")
+require("05_tags")
+require("06_presets")
+require("07_appearance")
+require("08_midi")
+require("09_gels")
+require("10_matricks")
+
+require("21_launchpad")
+
+require("98_logging")
+require("99_builder")

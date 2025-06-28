@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GMA3 DataVersion="2.2.1.1">
+    <UserPlugin Name="70_ColorPresets" Guid="12 D4 09 93 F9 29 DF 13 03 73 06 C9 CE DA 95 A9" Version="0.0.0.0">
+        <ComponentLua Name="[70_ColorPresets_lua]" Guid="12 D4 09 93 3C CF 00 2B 6D 80 D7 D2 E8 A5 AE A9"
+                      FileName="70_ColorPresets.lua"/>
+    </UserPlugin>
+</GMA3>

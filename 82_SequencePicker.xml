@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GMA3 DataVersion="2.2.1.1">
+    <UserPlugin Name="82_SequencePicker" Guid="4A 9B 18 5C E8 62 C9 5E 81 5E 7E 85 FB 15 62 57" Version="0.0.0.0">
+        <ComponentLua Name="[82_SequencePicker_lua]" Guid="4A 9B 18 5C 9F 91 73 72 55 79 20 99 AC 7B 03 56"
+                      FileName="82_SequencePicker.lua"/>
+    </UserPlugin>
+</GMA3>
