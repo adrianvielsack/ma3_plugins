@@ -76,6 +76,30 @@ function GenericPreset:byId(pool, no)
     return GenericPreset:from(obj)
 end
 
+-- works in 2.3.1.1
+function GenericPreset:getOrCreate(pool, id)
+    local preset = GenericPreset:byId(pool, id)
+
+    if preset == nil then
+        return GenericPreset:create(pool, id)
+    end
+
+    return preset
+end
+
+function GenericPreset:create(pool, id)
+    local instance = setmetatable({}, GenericPreset)
+    instance.id = id
+    -- Cmd(string.format("Store Layout %d", id))
+    local obj = DataPool().PresetPools[pool]:Create(id)
+
+    return GenericPreset:from(obj)
+end
+
+function GenericPreset:delete(pool, id)
+    DataPool().PresetPools[pool]:Delete(id)
+end
+
 function GenericPreset:from(obj)
     local preset = setmetatable({}, GenericPreset)
     preset.obj = obj
@@ -119,4 +143,9 @@ end
 
 function GenericPreset:getNote()
     return self.obj.Note
+end
+
+function GenericPreset:addRecipe()
+    local recipe = self.obj:Insert(#self.obj:Children() + 1)
+    return Recipe:from(recipe)
 end
