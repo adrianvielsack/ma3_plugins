@@ -54,3 +54,14 @@ end
 function Group:setAppearance(appearance)
     self.obj.Appearance = appearance.obj
 end
+
+function Group:addFixture(fixture)
+    Cmd("ClearAll")
+    Cmd("Fixture " .. fixture.obj.index)
+    Cmd("Store Group " .. self.obj.index .. " /m")
+end
+
+function Group:select()
+    Cmd("ClearAll")
+    Cmd("SelectFixtures Group " .. self.obj.index)
+end
