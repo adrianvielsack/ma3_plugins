@@ -77,8 +77,8 @@ function Macro:setName(name)
     self.obj.Name = name
 end
 
-function Macro:Delete()
-    self.obj:Delete()
+function Macro:delete()
+    DataPool().Macros:Delete(self.obj.index)
 end
 
 MacroLine = {}
