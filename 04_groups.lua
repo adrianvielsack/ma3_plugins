@@ -40,6 +40,9 @@ end
 function Group:findWithTag(tag)
     local groups = {}
     local allGroups = ObjectList('Group Thru')
+    if (type(tag) == "table" and tag.obj ~= nil) then
+        tag = tag.obj.name
+    end
     for _, group in pairs(allGroups) do
         if HasTag(group.Tags, tag) then
             table.insert(groups, Group:from(group))
