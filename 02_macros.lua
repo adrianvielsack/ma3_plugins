@@ -77,8 +77,8 @@ function Macro:setName(name)
     self.obj.Name = name
 end
 
-function Macro:Delete()
-    self.obj:Delete()
+function Macro:delete()
+    DataPool().Macros:Delete(self.obj.index)
 end
 
 MacroLine = {}
@@ -100,6 +100,23 @@ end
 
 function MacroLine:enable()
     self.obj.Enabled = false
+end
+
+function MacroLine:wait(value)
+    self.obj.Wait = value
+end
+
+function MacroLine:waitGo()
+    self.obj.Wait = "Go"
+end
+
+function MacroLine:waitFollow()
+    self.obj.Wait = "Follow"
+end
+
+function MacroLine:noops()
+    self.obj.Command = self.obj.Command .. "/noOops"
+    return self
 end
 
 function MacroLine:address()

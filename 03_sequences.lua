@@ -80,6 +80,14 @@ function Sequence:getOrCreate(id, name)
     return instance
 end
 
+function Sequence:deleteById(id)
+    DataPool().Sequences:Delete(id)
+end
+
+function Sequence:delete()
+    self:deleteById(self.obj.index)
+end
+
 function Sequence:address()
     return ToAddr(self.obj, false)
 end
@@ -133,6 +141,10 @@ function Sequence:getName()
     return self.obj.Name
 end
 
+function Sequence:setName(name)
+    self.obj.Name = name
+end
+
 function Sequence:children()
     local ret = {}
     for _, cue in pairs(self.obj:Children())
@@ -140,6 +152,17 @@ function Sequence:children()
         table.insert(ret, Cue:from(cue))
     end
     return ret
+end
+
+function Sequence:deleteCue(cue)
+    self.obj:Delete(cue.obj.index)
+end
+
+function Sequence:deleteAllCues()
+    for i, cue in pairs(self.obj:Children())
+    do
+        self.obj:Delete(i)
+    end
 end
 
 Cue = {}
@@ -281,4 +304,8 @@ end
 
 function Recipe:setValue(preset)
     self.obj.Values = preset.obj
+end
+
+function Recipe:setMATricks(preset)
+    self.obj.MATricks = preset.obj
 end

@@ -93,6 +93,16 @@ function Layout:lastElement()
     return string.format("%s.%d", self:address(), #DataPool().Layouts[self.obj.No])
 end
 
+function Layout:getElementByName(name)
+    local elements = self.obj:Children()
+    for _, el in pairs(elements) do
+        if (el.name == name) then
+            return LayoutElement:from(self, el)
+        end
+    end
+    return nil
+end
+
 --- @return LayoutElement
 function Layout:assign(elem, posX, posY, width, height)
     local layoutElement = LayoutElement:newByAssign(self, elem)
@@ -186,12 +196,34 @@ function LayoutElement:setAppearance(appearance)
     self.obj.Appearance = appearance.obj
 end
 
+function LayoutElement:setAppearanceByCmd(appearance)
+    local cmd = Builder:new():assign(appearance):at(self)
+    cmd:exec()
+end
+
 function LayoutElement:setText(text)
     self:setTextVisibility(false)
     self.obj:Set("CustomTextText", text)
     self.obj:Set("CustomTextAlignmentH", "Center")
     self.obj:Set("CustomTextAlignmentV", "Center")
     self.obj:Set("CustomTextSize", 18)
+end
 
+function LayoutElement:setTextSize(size)
+    self.obj:Set("CustomTextSize", size)
+end
 
+function LayoutElement:getText()
+    return self.obj.CustomTextText
+end
+
+function LayoutElement:assignObject(elem)
+    Cmd("Assign " .. elem:address() .. " At " .. self:address() .. ' Property "OBJECT"')
+end
+
+function LayoutElement:setBorderColor(color)
+    local hex_r = string.format("%x", math.floor(color.obj.r * 255))
+    local hex_g = string.format("%x", math.floor(color.obj.g * 255))
+    local hex_b = string.format("%x", math.floor(color.obj.b * 255))
+    self.obj.BorderColor = hex_r .. hex_g .. hex_b .. "FF"
 end

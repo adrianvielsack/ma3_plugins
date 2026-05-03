@@ -47,6 +47,18 @@ function Builder:store(obj)
     return self
 end
 
+function Builder:edit(obj)
+    table.insert(self.op, "Edit")
+    self:addItem(obj)
+    return self
+end
+
+function Builder:update(obj)
+    table.insert(self.op, "Update")
+    self:addItem(obj)
+    return self
+end
+
 function Builder:add(str)
     table.insert(self.op, str)
     return self
@@ -54,6 +66,21 @@ end
 
 function Builder:merge()
     table.insert(self.op, "/merge")
+    return self
+end
+
+function Builder:overwrite()
+    table.insert(self.op, "/overwrite")
+    return self
+end
+
+function Builder:universal()
+    table.insert(self.op, "/universal")
+    return self
+end
+
+function Builder:selective()
+    table.insert(self.op, "/selective")
     return self
 end
 

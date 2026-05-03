@@ -40,6 +40,9 @@ end
 function Group:findWithTag(tag)
     local groups = {}
     local allGroups = ObjectList('Group Thru')
+    if (type(tag) == "table" and tag.obj ~= nil) then
+        tag = tag.obj.name
+    end
     for _, group in pairs(allGroups) do
         if HasTag(group.Tags, tag) then
             table.insert(groups, Group:from(group))
@@ -50,4 +53,15 @@ end
 
 function Group:setAppearance(appearance)
     self.obj.Appearance = appearance.obj
+end
+
+function Group:addFixture(fixture)
+    Cmd("ClearAll")
+    Cmd("Fixture " .. fixture.obj.index)
+    Cmd("Store Group " .. self.obj.index .. " /m")
+end
+
+function Group:select()
+    Cmd("ClearAll")
+    Cmd("SelectFixtures Group " .. self.obj.index)
 end

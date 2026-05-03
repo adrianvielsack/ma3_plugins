@@ -1,12 +1,20 @@
+--- @class Appearance
+--- @field obj table|nil
 Appearance = {}
 Appearance.__index = Appearance
 
 function Appearance:byName(name)
     local obj = ObjectList(string.format("Appearance \"%s\"", name))
-    if obj == nil then
-        return nil
+    if #obj > 0 then
+        return Appearance:from(obj[1])
     end
-    return Appearance:from(obj[1])
+    local appearances = ObjectList("Appearance")[1]:Children()
+    for i, el in pairs(appearances) do
+        if el.name == name then
+            return Appearance:from(el)
+        end
+    end
+    return nil
 end
 
 function Appearance:from(obj)
