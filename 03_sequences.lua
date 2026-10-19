@@ -247,8 +247,16 @@ function CuePart:address()
     return ToAddr(self.obj, false)
 end
 
-function CuePart:addRecipe()
-    local obj = self.obj:Insert(#self.obj + 1)
+RECIPE_TYPE_STANDARD = "StandardRecipe"
+RECIPE_TYPE_PHASER = "PhaserRecipe"
+function CuePart:addRecipe(type)
+    local grandmaVersion = Version()
+    local obj
+    if grandmaVersion > "2.5.0.0" then
+        obj = self.obj:Insert(#self.obj + 1, type or "StandardRecipe")
+    else
+        obj = self.obj:Insert(#self.obj + 1)
+    end
     return Recipe:from(obj)
 end
 
