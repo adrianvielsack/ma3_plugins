@@ -1,3 +1,5 @@
+--- @class Sequence
+--- @field obj table|nil
 Sequence = {}
 Sequence.__index = Sequence
 
@@ -165,6 +167,8 @@ function Sequence:deleteAllCues()
     end
 end
 
+--- @class Cue
+--- @field obj table|nil
 Cue = {}
 Cue.__index = Cue
 
@@ -228,6 +232,8 @@ function Cue:setFadeTime(t)
     self:getCuePart(1).obj.CueInFade = t
 end
 
+--- @class CuePart
+--- @field obj table|nil
 CuePart = {}
 CuePart.__index = CuePart
 
@@ -241,8 +247,16 @@ function CuePart:address()
     return ToAddr(self.obj, false)
 end
 
-function CuePart:addRecipe()
-    local obj = self.obj:Insert(#self.obj + 1)
+RECIPE_TYPE_STANDARD = "StandardRecipe"
+RECIPE_TYPE_PHASER = "PhaserRecipe"
+function CuePart:addRecipe(type)
+    local grandmaVersion = Version()
+    local obj
+    if grandmaVersion > "2.5.0.0" then
+        obj = self.obj:Insert(#self.obj + 1, type or "StandardRecipe")
+    else
+        obj = self.obj:Insert(#self.obj + 1)
+    end
     return Recipe:from(obj)
 end
 
@@ -281,6 +295,8 @@ function CuePart:getName()
     return self.obj.Name
 end
 
+--- @class Recipe
+--- @field obj table|nil
 Recipe = {}
 Recipe.__index = Recipe
 

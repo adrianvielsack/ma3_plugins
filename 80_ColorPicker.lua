@@ -1,5 +1,7 @@
 require("00_library")
 
+--- @class ColorPicker
+--- @field obj table|nil
 ColorPicker = {}
 ColorPicker.__index = ColorPicker
 
