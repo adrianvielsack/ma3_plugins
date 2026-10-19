@@ -1,4 +1,7 @@
 require("05_tags")
+
+--- @class MATricks
+--- @field obj table|nil
 MATricks = {}
 MATricks.__index = MATricks
 

@@ -1,3 +1,5 @@
+--- @class Sequence
+--- @field obj table|nil
 Sequence = {}
 Sequence.__index = Sequence
 
@@ -165,6 +167,8 @@ function Sequence:deleteAllCues()
     end
 end
 
+--- @class Cue
+--- @field obj table|nil
 Cue = {}
 Cue.__index = Cue
 
@@ -228,6 +232,8 @@ function Cue:setFadeTime(t)
     self:getCuePart(1).obj.CueInFade = t
 end
 
+--- @class CuePart
+--- @field obj table|nil
 CuePart = {}
 CuePart.__index = CuePart
 
@@ -281,6 +287,8 @@ function CuePart:getName()
     return self.obj.Name
 end
 
+--- @class Recipe
+--- @field obj table|nil
 Recipe = {}
 Recipe.__index = Recipe
 

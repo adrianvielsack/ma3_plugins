@@ -9,6 +9,8 @@ PRESET_CONTROL = 7
 PRESET_PHASER = 21
 PRESET_GENERIC_23 = 23
 
+--- @class Color
+--- @field obj table|nil
 Color = {}
 Color.__index = Color
 
@@ -65,6 +67,8 @@ function Color:getNote()
     return self.obj.Note
 end
 
+--- @class GenericPreset
+--- @field obj table|nil
 GenericPreset = {}
 GenericPreset.__index = GenericPreset
 

@@ -1,3 +1,5 @@
+--- @class Logger
+--- @field obj table|nil
 Logger = {}
 Logger.__index = Logger
 

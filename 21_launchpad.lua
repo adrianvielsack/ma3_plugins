@@ -1,11 +1,15 @@
-require("21_launchpad_defines")
-require("08_midi")
+require("ma3_plugins/21_launchpad_defines")
+require("ma3_plugins/08_midi")
+
+--- @class LaunchPad
+--- @field obj table|nil
 LaunchPad = {}
 LaunchPad.__index = LaunchPad
 
 function LaunchPad:setLed(x, y, clr)
     LaunchPadCmd:new():setLed(x, y, clr):exec()
 end
+
 function LaunchPad:setLedRGB(x, y, r, g, b, dim)
     LaunchPadCmd:new():setLedRGB(x, y, r, g, b, dim):exec()
 end
@@ -22,6 +26,8 @@ function LaunchPad:clear()
     LaunchPadCmd:new():clear():exec()
 end
 
+--- @class LaunchPadCmd
+--- @field obj table|nil
 LaunchPadCmd = {}
 LaunchPadCmd.__index = LaunchPadCmd
 

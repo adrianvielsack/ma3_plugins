@@ -1,3 +1,5 @@
+--- @class Builder
+--- @field obj table|nil
 Builder = {}
 Builder.__index = Builder
 

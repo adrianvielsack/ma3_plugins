@@ -1,6 +1,10 @@
+--- @class Midi
+--- @field obj table|nil
 Midi = {}
 Midi.__index = Midi
 
+--- @class MidiInput
+--- @field obj table|nil
 MidiInput = {}
 MidiInput.__index = MidiInput
 
@@ -14,6 +18,7 @@ end
 function Midi:note_on(note, velocity)
     Cmd(string.format("SendMidi \"Note\" %d/%d %d", self.channel, note, velocity))
 end
+
 function sendMidiCmd(chan, note, velocity)
     return Builder:new():noteOn(chan, noote, velocity)
 end
@@ -49,8 +54,8 @@ function MidiInput:set(chan, note, target)
     midiRemote.Target = target.obj
     midiRemote.MidiIndex = note
     midiRemote.Key = "Go+"
-
 end
+
 function MidiInput:unset(chan, note)
     local midiRemote = midiMapGet(chan, note)
     if midiRemote ~= nil then
